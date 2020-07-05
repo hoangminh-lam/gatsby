@@ -1,0 +1,57 @@
+
+header {
+    background: none;
+}
+
+.header {
+    ul {
+        width: 500px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+    li {
+        list-style-type: none;
+    }
+}
+
+
+.button {
+    &-like {
+        max-width: 200px;
+        background: #000;
+        color: #fff;
+        cursor: pointer;
+        &:hover {
+            background: #ccc;
+        }
+    }
+}
+
+.allCont {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.register {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    transform: translate(-50%, -50%);
+}
+
+.errorBox {
+    border: '1px ref solid';
+}
+
+.userInput {
+    margin-bottom: 50px;
+}
