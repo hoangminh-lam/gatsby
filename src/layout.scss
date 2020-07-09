@@ -195,6 +195,7 @@ footer {
 
 .project-list {
     display: flex;
+    flex-wrap: wrap;
     li {
        margin-right: 20px !important;
        width: 130px;
@@ -205,12 +206,19 @@ footer {
            text-align: center;
            color: #fff;
            border-radius: 20px;
+           white-space: nowrap;
            background: #956fff;
        }
     }
 }
 
 .block {
+    .block-h2 {
+        margin-bottom: 30px;
+    }
+    .block-text {
+        margin-bottom: 50px;
+    }
     h3 {
         margin-top: 10px;
     }

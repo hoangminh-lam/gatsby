@@ -10,8 +10,10 @@ const UserInfoTemplate = ({ data }) => (
     <div className="userinfo-page wrapper">
       <Img fixed={data.strapiUserInfo.user_img.childImageSharp.fixed}/>
       <div className="block">
-        <h2>{data.strapiUserInfo.user_name}</h2>
-        <Reactmarkdown source={data.strapiUserInfo.user_explain} />
+        <h2 className="block-h2">{data.strapiUserInfo.user_name}</h2>
+        <div className="block-text">
+          <Reactmarkdown source={data.strapiUserInfo.user_explain} />
+        </div>
         <h3 className="c-ttl2">参加中プロジェクト</h3>
         <ul className="project-list">
           {data.strapiUserInfo.projects.map(p => (

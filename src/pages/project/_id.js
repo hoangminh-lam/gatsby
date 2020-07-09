@@ -10,8 +10,10 @@ const ProjectTemplate = ({ data }) => (
     <div className="project-page wrapper">
       <Img fixed={data.strapiProject.logo.childImageSharp.fixed}/>
       <div class="block">
-        <h2>{data.strapiProject.name}</h2>
-        <Reactmarkdown  source={data.strapiProject.explain} />
+        <h2 className="block-h2">{data.strapiProject.name}</h2>
+        <div className="block-text">
+          <Reactmarkdown  source={data.strapiProject.explain} />
+        </div>
         <h3 className="c-ttl2">メンバー</h3>
         <ul className="project-list">
           {data.strapiProject.member.map(p => (
