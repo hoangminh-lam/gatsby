@@ -2,13 +2,38 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Layout from '../../components/layout' 
+import Reactmarkdown from 'react-markdown'
 
 const ProjectTemplate = ({ data }) => (
   <Layout>
-    <h1>{data.strapiProject.name}</h1>
-    <Img fixed={data.strapiProject.logo.childImageSharp.fixed}/>
-    <p>{data.strapiProject.explain}</p>
-    <p><Link to="/">Top Page</Link></p>
+    <h1 className="c-mv">プロジェクト</h1>
+    <div className="project-page wrapper">
+      <Img fixed={data.strapiProject.logo.childImageSharp.fixed}/>
+      <div class="block">
+        <h2>{data.strapiProject.name}</h2>
+        <Reactmarkdown  source={data.strapiProject.explain} />
+        <h3 className="c-ttl2">メンバー</h3>
+        <ul className="project-list">
+          {data.strapiProject.member.map(p => (
+            <li key={p.id}>
+              <Link to={`/user-info/User-info_${p.id}`}>
+                {p.user_name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <h3 className="c-ttl2">気になる</h3>
+        <ul className="project-list">
+          {data.strapiProject.likes.map(p => (
+            <li key={p.id}>
+              <Link to={`/user-info/User-info_${p.id}`}>
+                {p.user_name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   </Layout>
 )
 
@@ -26,6 +51,14 @@ export const query = graphql`
         }
       }
       explain
+      member {
+        id
+        user_name
+      }
+      likes {
+        id
+        user_name
+      }
     }
   }
 `

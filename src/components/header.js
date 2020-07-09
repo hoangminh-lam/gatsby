@@ -6,25 +6,26 @@ const Header = ({ siteTitle }) => (
   <header>
     <div
       className="header"
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
     >
       <ul>
         <li>
           <Link to="/">
             ホーム
           </Link>
-          <Link to="/article">
-            記事
-          </Link>
+        </li>
+        <li>
           <Link to="/project">
             プロジェクト
           </Link>
+        </li>
+        <li>
           <Link to="/user-info">
-            ユーザー一覧
+            ユーザー情報
+          </Link>
+        </li>
+        <li>
+          <Link to="/faq">
+            FAQ
           </Link>
         </li>
       </ul>
