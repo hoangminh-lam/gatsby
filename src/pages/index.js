@@ -9,7 +9,7 @@ const IndexPage = ({ data }) => (
     <h1 className="c-mv">STRAPI x GATSBY</h1>
     <div className="wrapper">
       <div className="project">
-        <h2 class="c-ttl">プロジェクト</h2>
+        <h2 className="c-ttl">プロジェクト</h2>
         <ul>
           {data.allStrapiProject.edges.map(document => (
             <li key={document.node.id}>

@@ -50,7 +50,7 @@ const ProjectPage = ({ data }) => {
     const postIDs = postID.split('_')[1]
     const likeList = listID(like)
     const listIDs = [...likeList, userID]
-    console.log(listIDs)
+    // console.log(listIDs)
     const res = await fetch(`${endpoint}/${postIDs}`, {
       method: 'PUT',
       headers: {
