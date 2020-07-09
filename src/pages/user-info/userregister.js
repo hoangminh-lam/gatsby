@@ -26,8 +26,9 @@ export default () => {
     const user_name = nameRef.current.value;
     const position = positionRef.current.value;
     const user_explain = explainRef.current.value;
-    const author = window.sessionStorage.getItem('user').id
-    // console.log(user_img);
+    const user = window.sessionStorage.getItem('user')
+    const userID = JSON.parse(user)
+    const author = userID.id
     const formData = new FormData();
     const data = {
       user_name,
@@ -45,7 +46,7 @@ export default () => {
       },
       body: formData,
     }).then(r => r.json());
-
+    navigate('/');
     // window.location.reload();
     // const newUserInfo = [...userInfos, res];
     // setuserInfos(newUserInfo);
