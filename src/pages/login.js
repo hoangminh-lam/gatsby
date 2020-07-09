@@ -30,8 +30,7 @@ export default () => {
 
       window.sessionStorage.setItem('jwt', jwt);
       window.sessionStorage.setItem('user', JSON.stringify(user));
-
-      navigate('/');
+      user.userinfo === null ? navigate('user-info/userregister') : navigate('/');
     } catch (err) {
       console.log(err);
     }

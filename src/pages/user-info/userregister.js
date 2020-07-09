@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { navigate } from 'gatsby'
 
-const endpoint = 'https://lam-strapi-gatsby.herokuapp.com/user-infos'
+const endpoint = 'http://localhost:1337/user-infos'
 
 export default () => {
   const jwtRef = useRef();
