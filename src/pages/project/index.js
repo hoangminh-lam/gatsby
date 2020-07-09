@@ -9,6 +9,7 @@ const endpoint = 'https://lam-strapi-gatsby.herokuapp.com/projects'
 const ProjectPage = ({ data }) => {
   const jwtRef = useRef();
   const [likes, setLikes] = useState(false)
+  const [posts, setPosts] = useState(0)
 
   useEffect(() => {
     const jwt = window.sessionStorage.getItem('jwt');
@@ -19,6 +20,17 @@ const ProjectPage = ({ data }) => {
     jwtRef.current = jwt
 
   }, []);
+  useEffect(() => {
+    // get data from GitHub api
+    async function fetchData() {
+      await fetch('https://lam-strapi-gatsby.herokuapp.com/projects')
+        .then(response => response.json()) // parse JSON from request
+        .then(resultData => {
+          setPosts(resultData)
+        }) // set data for the number of stars
+    }
+    fetchData();
+  }, [])
 
   let user, userInfo, userID
   if (typeof window !== 'undefined') {
@@ -31,7 +43,6 @@ const ProjectPage = ({ data }) => {
   const listID = (list) => {
     const lists = []
     list.map(l => lists.push(l.id));
-    console.log(list)
     return lists
   }
 
@@ -54,20 +65,23 @@ const ProjectPage = ({ data }) => {
 
   return (
     <Layout>
-      <h1>Project情報</h1>
-      <ul>
-        {data.allStrapiProject.edges.map(document => (
-          <li key={document.node.id}>
-            <h2>
-              <Link to={`/project/${document.node.id}`}>{document.node.name}</Link>
-            </h2>
-            <Img fixed={document.node.logo.childImageSharp.fixed}/>
-            {/* <p>{document.node.explain}</p> */}
-            <p className="button-like" onClick={() => updateLike(document.node.id, document.node.likes)}>気になる</p>
-          </li>
-        ))}
-      </ul>
-      <p><Link to="/">Top Page</Link></p>
+      <h1 className="c-mv">プロジェクト</h1>
+      <div className="project-page wrapper">
+        <ul>
+          {data.allStrapiProject.edges.map(document => (
+            <li key={document.node.id}>
+              <Link to={`/project/${document.node.id}`}>
+                <h2>
+                  {document.node.name}
+                </h2>
+                <div className="c-img"><Img fixed={document.node.logo.childImageSharp.fixed}/></div>
+              </Link>
+              {/* <p>{document.node.explain}</p> */}
+              <p className="button-like" onClick={() => updateLike(document.node.id, document.node.likes)}>気になる</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </Layout>
   )
 }
@@ -82,7 +96,7 @@ export const projectPageQuery = graphql`
           name
           logo {
             childImageSharp {
-                fixed(width: 200) {
+                fixed(width: 300) {
                   ...GatsbyImageSharpFixed
                 }
             }

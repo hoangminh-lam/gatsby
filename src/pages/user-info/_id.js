@@ -6,10 +6,34 @@ import Reactmarkdown from 'react-markdown'
 
 const UserInfoTemplate = ({ data }) => (
   <Layout>
-    <h1>{data.strapiUserInfo.user_name}</h1>
-    <Img fixed={data.strapiUserInfo.user_img.childImageSharp.fixed}/>
-    <Reactmarkdown source={data.strapiUserInfo.user_explain} />
-    <p><Link to="/">Top Page</Link></p>
+    <h1 className="c-mv">ユーザー情報</h1>
+    <div className="userinfo-page wrapper">
+      <Img fixed={data.strapiUserInfo.user_img.childImageSharp.fixed}/>
+      <div className="block">
+        <h2>{data.strapiUserInfo.user_name}</h2>
+        <Reactmarkdown source={data.strapiUserInfo.user_explain} />
+        <h3 className="c-ttl2">参加中プロジェクト</h3>
+        <ul className="project-list">
+          {data.strapiUserInfo.projects.map(p => (
+            <li key={p.id}>
+              <Link to={`/project/Project_${p.id}`}>
+                {p.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <h3 className="c-ttl2">気になるプロジェクト</h3>
+        <ul className="project-list">
+          {data.strapiUserInfo.liked.map(p => (
+            <li key={p.id}>
+              <Link to={`/project/Project_${p.id}`}>
+                {p.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   </Layout>
 )
 
@@ -26,6 +50,14 @@ export const query = graphql`
             ...GatsbyImageSharpFixed
           }
         }
+      }
+      projects {
+        id
+        name
+      }
+      liked {
+        id
+        name
       }
     }
   }

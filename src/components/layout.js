@@ -33,19 +33,14 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
+      <div>
         <main>{children}</main>
         <footer>  
           © {new Date().getFullYear()}, Built with
                   {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a> and {" "}
-          <a href="http://strapi.io">Strapi</a>
+          <a href="http://strapi.io">Strapi</a> {" "}
+           by ramukun
         </footer>
       </div>
     </>

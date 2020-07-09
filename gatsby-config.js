@@ -23,6 +23,7 @@ module.exports = {
           'user-info',
           'project',
         ],
+        singleTypes: ['faq-page'],
         queryLimit: 1000,
       },
     },
